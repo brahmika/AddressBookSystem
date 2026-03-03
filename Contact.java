@@ -1,5 +1,7 @@
 //Contact class to define user attributes
 
+import java.util.Objects;
+
 public class Contact {
 
     private String firstName;
@@ -29,21 +31,35 @@ public class Contact {
         return firstName;
     }
 
-    public void setAddress(String address) { this.address = address; }
-    public void setCity(String city) { this.city = city; }
-    public void setState(String state) { this.state = state; }
-    public void setZip(String zip) { this.zip = zip; }
-    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
-    public void setEmail(String email) { this.email = email; }
+    public String getLastName() {
+        return lastName;
+    }
+
+    // Override equals for duplicate check
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj)
+            return true;
+
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+
+        Contact contact = (Contact) obj;
+
+        return firstName.equalsIgnoreCase(contact.firstName) &&
+                lastName.equalsIgnoreCase(contact.lastName);
+    }
+
+    // Always override hashCode when overriding equals
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName.toLowerCase(), lastName.toLowerCase());
+    }
 
     @Override
     public String toString() {
-        return "\nName: " + firstName + " " + lastName +
-                "\nAddress: " + address +
-                "\nCity: " + city +
-                "\nState: " + state +
-                "\nZip: " + zip +
-                "\nPhone: " + phoneNumber +
-                "\nEmail: " + email;
+        return firstName + " " + lastName + " | " +
+                city + ", " + state + " | " + phoneNumber;
     }
 }

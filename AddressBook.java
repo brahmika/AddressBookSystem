@@ -4,22 +4,33 @@ import java.util.List;
 
 public class AddressBook {
 
-    private List<Contact> contactList = new ArrayList<>();
+    private String addressBookName;
+    private List<Contact> contactList;
+
+    public AddressBook(String addressBookName) {
+        this.addressBookName = addressBookName;
+        this.contactList = new ArrayList<>();
+    }
+
+    public String getAddressBookName() {
+        return addressBookName;
+    }
 
     public void addContact(Contact contact) {
-        contactList.add(contact);
-        System.out.println("Contact added successfully!");
+
+        // 🔥 Using Java Streams to check duplicate
+        boolean isDuplicate = contactList.stream()
+                .anyMatch(existingContact -> existingContact.equals(contact));
+
+        if (isDuplicate) {
+            System.out.println("Duplicate Entry! Person already exists.");
+        } else {
+            contactList.add(contact);
+            System.out.println("Contact added successfully.");
+        }
     }
 
     public void displayContacts() {
-
-        if (contactList.isEmpty()) {
-            System.out.println("No contacts available.");
-            return;
-        }
-
-        for (Contact contact : contactList) {
-            System.out.println(contact);
-        }
+        contactList.forEach(System.out::println);
     }
 }
