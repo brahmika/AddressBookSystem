@@ -10,39 +10,40 @@ public class AddressBookMain {
         Scanner scanner = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
 
-        // Taking input from console
-        System.out.println("Enter First Name:");
+        System.out.print("Enter First Name: ");
         String firstName = scanner.nextLine();
 
-        System.out.println("Enter Last Name:");
+        System.out.print("Enter Last Name: ");
         String lastName = scanner.nextLine();
 
-        System.out.println("Enter Address:");
+        System.out.print("Enter Address: ");
         String address = scanner.nextLine();
 
-        System.out.println("Enter City:");
+        System.out.print("Enter City: ");
         String city = scanner.nextLine();
 
-        System.out.println("Enter State:");
+        System.out.print("Enter State: ");
         String state = scanner.nextLine();
 
-        System.out.println("Enter Zip:");
+        System.out.print("Enter Zip: ");
         String zip = scanner.nextLine();
 
-        System.out.println("Enter Phone Number:");
-        String phone = scanner.nextLine();
+        System.out.print("Enter Phone Number: ");
+        String phoneNumber = scanner.nextLine();
 
-        System.out.println("Enter Email:");
+        System.out.print("Enter Email: ");
         String email = scanner.nextLine();
 
-        // Creating Contact Object
+        // Create Contact Object
         Contact contact = new Contact(firstName, lastName, address,
-                city, state, zip, phone, email);
+                city, state, zip, phoneNumber, email);
 
-        // Adding Contact to AddressBook
+        // Add Contact to AddressBook
         addressBook.addContact(contact);
 
-        // Displaying Contact
+        // Display Contact
         addressBook.displayContact();
+
+        scanner.close();
     }
 }

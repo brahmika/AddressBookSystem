@@ -1,4 +1,5 @@
 //Contact class to define user attributes
+
 public class Contact {
 
     private String firstName;
@@ -28,12 +29,12 @@ public class Contact {
     @Override
     public String toString() {
         return "\nContact Details:" +
-                "\nName: " + firstName + " " + lastName +
-                "\nAddress: " + address +
-                "\nCity: " + city +
-                "\nState: " + state +
-                "\nZip: " + zip +
-                "\nPhone: " + phoneNumber +
-                "\nEmail: " + email;
+                "\nName        : " + firstName + " " + lastName +
+                "\nAddress     : " + address +
+                "\nCity        : " + city +
+                "\nState       : " + state +
+                "\nZip         : " + zip +
+                "\nPhone       : " + phoneNumber +
+                "\nEmail       : " + email;
     }
 }
