@@ -1,9 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
 import java.util.stream.Collectors;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AddressBookSystem {
 
@@ -13,31 +10,41 @@ public class AddressBookSystem {
         addressBookMap = new HashMap<>();
     }
 
-    public List<Contact> searchByCity(String city) {
-
-        return addressBookMap.values().stream()       // All AddressBooks
-                .flatMap(addressBook -> addressBook.getContactList().stream())
-                .filter(contact -> contact.getCity().equalsIgnoreCase(city))
-                .collect(Collectors.toList());
-    }
-
-    public List<Contact> searchByState(String state) {
-
-        return addressBookMap.values().stream()
-                .flatMap(addressBook -> addressBook.getContactList().stream())
-                .filter(contact -> contact.getState().equalsIgnoreCase(state))
-                .collect(Collectors.toList());
-    }
+    // Add new AddressBook
     public void addAddressBook(String name) {
-        addressBookMap.put(name, new AddressBook(name));
-        System.out.println("Address Book '" + name + "' created.");
+
+        if (addressBookMap.containsKey(name)) {
+            System.out.println("Address Book already exists.");
+        } else {
+            addressBookMap.put(name, new AddressBook(name));
+            System.out.println("Address Book '" + name + "' created.");
+        }
     }
 
+    // Get AddressBook by name
     public AddressBook getAddressBook(String name) {
         return addressBookMap.get(name);
     }
 
-    public Map<String, AddressBook> getAddressBookMap() {
-        return addressBookMap;
+    // UC9 – Count by City across ALL AddressBooks
+    public Map<String, Long> getContactCountByCityAcrossSystem() {
+
+        return addressBookMap.values().stream()
+                .flatMap(addressBook -> addressBook.getContactList().stream())
+                .collect(Collectors.groupingBy(
+                        Contact::getCity,
+                        Collectors.counting()
+                ));
+    }
+
+    // UC9 – Count by State across ALL AddressBooks
+    public Map<String, Long> getContactCountByStateAcrossSystem() {
+
+        return addressBookMap.values().stream()
+                .flatMap(addressBook -> addressBook.getContactList().stream())
+                .collect(Collectors.groupingBy(
+                        Contact::getState,
+                        Collectors.counting()
+                ));
     }
 }

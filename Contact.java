@@ -27,14 +27,6 @@ public class Contact {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
     public String getCity() {
         return city;
     }
@@ -42,31 +34,11 @@ public class Contact {
     public String getState() {
         return state;
     }
-    // Override equals for duplicate check
-    @Override
-    public boolean equals(Object obj) {
-
-        if (this == obj)
-            return true;
-
-        if (obj == null || getClass() != obj.getClass())
-            return false;
-
-        Contact contact = (Contact) obj;
-
-        return firstName.equalsIgnoreCase(contact.firstName) &&
-                lastName.equalsIgnoreCase(contact.lastName);
-    }
-
-    // Always override hashCode when overriding equals
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName.toLowerCase(), lastName.toLowerCase());
-    }
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " | " +
-                city + ", " + state + " | " + phoneNumber;
+        return firstName + " " + lastName +
+                " | " + city + ", " + state +
+                " | " + phoneNumber;
     }
 }
