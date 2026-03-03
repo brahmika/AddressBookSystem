@@ -10,26 +10,48 @@ public class AddressBookMain {
         Scanner scanner = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
 
-        // Add Sample Contact
-        System.out.print("Enter First Name: ");
-        String firstName = scanner.nextLine();
+        boolean continueAdding = true;
 
-        System.out.print("Enter Last Name: ");
-        String lastName = scanner.nextLine();
+        while (continueAdding) {
 
-        Contact contact = new Contact(firstName, lastName,
-                "Address", "City", "State",
-                "000000", "1234567890", "email@email.com");
+            System.out.print("\nEnter First Name: ");
+            String firstName = scanner.nextLine();
 
-        addressBook.addContact(contact);
+            System.out.print("Enter Last Name: ");
+            String lastName = scanner.nextLine();
 
-        // Delete Contact
-        System.out.print("\nEnter First Name to Delete: ");
-        String nameToDelete = scanner.nextLine();
+            System.out.print("Enter Address: ");
+            String address = scanner.nextLine();
 
-        addressBook.deleteContact(nameToDelete);
+            System.out.print("Enter City: ");
+            String city = scanner.nextLine();
 
-        // Display Remaining Contacts
+            System.out.print("Enter State: ");
+            String state = scanner.nextLine();
+
+            System.out.print("Enter Zip: ");
+            String zip = scanner.nextLine();
+
+            System.out.print("Enter Phone Number: ");
+            String phoneNumber = scanner.nextLine();
+
+            System.out.print("Enter Email: ");
+            String email = scanner.nextLine();
+
+            Contact contact = new Contact(firstName, lastName, address,
+                    city, state, zip, phoneNumber, email);
+
+            addressBook.addContact(contact);
+
+            System.out.print("\nDo you want to add another contact? (yes/no): ");
+            String choice = scanner.nextLine();
+
+            if (!choice.equalsIgnoreCase("yes")) {
+                continueAdding = false;
+            }
+        }
+
+        System.out.println("\nAll Contacts:");
         addressBook.displayContacts();
 
         scanner.close();
