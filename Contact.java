@@ -35,6 +35,13 @@ public class Contact {
         return lastName;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
     // Override equals for duplicate check
     @Override
     public boolean equals(Object obj) {

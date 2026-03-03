@@ -33,4 +33,7 @@ public class AddressBook {
     public void displayContacts() {
         contactList.forEach(System.out::println);
     }
+    public List<Contact> getContactList() {
+        return contactList;
+    }
 }

@@ -1,4 +1,5 @@
 //Contains the main method to take input from the user.
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBookMain {
@@ -8,40 +9,31 @@ public class AddressBookMain {
         System.out.println("Welcome to Address Book");
 
         Scanner scanner = new Scanner(System.in);
+        AddressBookSystem system = new AddressBookSystem();
 
-        AddressBook addressBook = new AddressBook("MyAddressBook");
+        // Create multiple AddressBooks
+        system.addAddressBook("Home");
+        system.addAddressBook("Office");
 
-        System.out.print("Enter First Name: ");
-        String firstName = scanner.nextLine();
+        // Add sample data (for testing)
+        AddressBook home = system.getAddressBook("Home");
+        home.addContact(new Contact("Brahmika", "S", "Street1",
+                "Chennai", "TamilNadu", "600001",
+                "9876543210", "brah@example.com"));
 
-        System.out.print("Enter Last Name: ");
-        String lastName = scanner.nextLine();
+        AddressBook office = system.getAddressBook("Office");
+        office.addContact(new Contact("Rahul", "K", "Street2",
+                "Chennai", "TamilNadu", "600002",
+                "9123456780", "rahul@example.com"));
 
-        System.out.print("Enter Address: ");
-        String address = scanner.nextLine();
-
-        System.out.print("Enter City: ");
+        // 🔍 Search by City
+        System.out.print("Enter City to Search: ");
         String city = scanner.nextLine();
 
-        System.out.print("Enter State: ");
-        String state = scanner.nextLine();
+        List<Contact> cityResults = system.searchByCity(city);
 
-        System.out.print("Enter Zip: ");
-        String zip = scanner.nextLine();
-
-        System.out.print("Enter Phone Number: ");
-        String phone = scanner.nextLine();
-
-        System.out.print("Enter Email: ");
-        String email = scanner.nextLine();
-
-        Contact contact = new Contact(firstName, lastName, address,
-                city, state, zip, phone, email);
-
-        addressBook.addContact(contact);
-
-        System.out.println("\nAll Contacts:");
-        addressBook.displayContacts();
+        System.out.println("Search Results:");
+        cityResults.forEach(System.out::println);
 
         scanner.close();
     }
