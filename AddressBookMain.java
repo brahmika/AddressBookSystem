@@ -10,7 +10,7 @@ public class AddressBookMain {
         Scanner scanner = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
 
-        // Add Contact
+        // Add Sample Contact
         System.out.print("Enter First Name: ");
         String firstName = scanner.nextLine();
 
@@ -18,18 +18,18 @@ public class AddressBookMain {
         String lastName = scanner.nextLine();
 
         Contact contact = new Contact(firstName, lastName,
-                "Old Address", "Old City", "Old State",
-                "000000", "1234567890", "old@email.com");
+                "Address", "City", "State",
+                "000000", "1234567890", "email@email.com");
 
         addressBook.addContact(contact);
 
-        // Edit Contact
-        System.out.print("\nEnter First Name to Edit: ");
-        String nameToEdit = scanner.nextLine();
+        // Delete Contact
+        System.out.print("\nEnter First Name to Delete: ");
+        String nameToDelete = scanner.nextLine();
 
-        addressBook.editContact(nameToEdit);
+        addressBook.deleteContact(nameToDelete);
 
-        // Display All
+        // Display Remaining Contacts
         addressBook.displayContacts();
 
         scanner.close();
