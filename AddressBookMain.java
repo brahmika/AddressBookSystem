@@ -1,5 +1,6 @@
 //Contains the main method to take input from the user.
-import java.util.Map;
+import java.util.List;
+import java.util.Scanner;
 
 public class AddressBookMain {
 
@@ -7,29 +8,55 @@ public class AddressBookMain {
 
         System.out.println("Welcome to Address Book");
 
+        Scanner scanner = new Scanner(System.in);
+
         AddressBook addressBook = new AddressBook("MyAddressBook");
 
-        // Sample Contacts
-        addressBook.addContact(new Contact("Brahmika", "S",
-                "Street1", "Chennai", "TamilNadu",
-                "600001", "9876543210", "brah@example.com"));
+        // Add multiple persons using console
+        System.out.print("How many contacts do you want to add? ");
+        int count = scanner.nextInt();
+        scanner.nextLine(); // consume newline
 
-        addressBook.addContact(new Contact("Rahul", "K",
-                "Street2", "Chennai", "TamilNadu",
-                "600002", "9123456780", "rahul@example.com"));
+        for (int i = 0; i < count; i++) {
 
-        addressBook.addContact(new Contact("Anita", "R",
-                "Street3", "Bangalore", "Karnataka",
-                "560001", "9988776655", "anita@example.com"));
+            System.out.println("\nEnter details for Contact " + (i + 1));
 
-        System.out.println("\n--- Count By City ---");
-        Map<String, Long> cityCount = addressBook.getContactCountByCity();
-        cityCount.forEach((city, count) ->
-                System.out.println(city + " : " + count));
+            System.out.print("First Name: ");
+            String firstName = scanner.nextLine();
 
-        System.out.println("\n--- Count By State ---");
-        Map<String, Long> stateCount = addressBook.getContactCountByState();
-        stateCount.forEach((state, count) ->
-                System.out.println(state + " : " + count));
+            System.out.print("Last Name: ");
+            String lastName = scanner.nextLine();
+
+            System.out.print("Address: ");
+            String address = scanner.nextLine();
+
+            System.out.print("City: ");
+            String city = scanner.nextLine();
+
+            System.out.print("State: ");
+            String state = scanner.nextLine();
+
+            System.out.print("Zip: ");
+            String zip = scanner.nextLine();
+
+            System.out.print("Phone Number: ");
+            String phone = scanner.nextLine();
+
+            System.out.print("Email: ");
+            String email = scanner.nextLine();
+
+            addressBook.addContact(new Contact(
+                    firstName, lastName, address,
+                    city, state, zip, phone, email));
+        }
+
+        // Sort and Display
+        System.out.println("\n--- Contacts Sorted Alphabetically ---");
+
+        List<Contact> sortedContacts = addressBook.sortByName();
+
+        sortedContacts.forEach(System.out::println);
+
+        scanner.close();
     }
 }

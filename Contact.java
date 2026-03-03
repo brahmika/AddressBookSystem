@@ -27,12 +27,12 @@ public class Contact {
         this.email = email;
     }
 
-    public String getCity() {
-        return city;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getState() {
-        return state;
+    public String getLastName() {
+        return lastName;
     }
 
     @Override

@@ -1,7 +1,7 @@
 //Contains methods to add and display contacts.
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class AddressBook {
@@ -16,26 +16,19 @@ public class AddressBook {
 
     public void addContact(Contact contact) {
         contactList.add(contact);
-        System.out.println("Contact added successfully.");
     }
 
-    // 🔥 UC9 – Count by City using Streams
-    public Map<String, Long> getContactCountByCity() {
-
-        return contactList.stream()
-                .collect(Collectors.groupingBy(
-                        Contact::getCity,
-                        Collectors.counting()
-                ));
+    public List<Contact> getContactList() {
+        return contactList;
     }
 
-    // 🔥 UC9 – Count by State using Streams
-    public Map<String, Long> getContactCountByState() {
+    // UC10 – Sort by Name using Streams
+    public List<Contact> sortByName() {
 
         return contactList.stream()
-                .collect(Collectors.groupingBy(
-                        Contact::getState,
-                        Collectors.counting()
-                ));
+                .sorted(Comparator
+                        .comparing(Contact::getFirstName, String.CASE_INSENSITIVE_ORDER)
+                        .thenComparing(Contact::getLastName, String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
     }
 }
