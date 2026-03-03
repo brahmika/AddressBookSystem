@@ -22,13 +22,31 @@ public class AddressBook {
         return contactList;
     }
 
-    // UC10 – Sort by Name using Streams
-    public List<Contact> sortByName() {
+    // Sort by City
+    public List<Contact> sortByCity() {
 
         return contactList.stream()
-                .sorted(Comparator
-                        .comparing(Contact::getFirstName, String.CASE_INSENSITIVE_ORDER)
-                        .thenComparing(Contact::getLastName, String.CASE_INSENSITIVE_ORDER))
+                .sorted(Comparator.comparing(
+                        Contact::getCity,
+                        String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+    }
+
+    // Sort by State
+    public List<Contact> sortByState() {
+
+        return contactList.stream()
+                .sorted(Comparator.comparing(
+                        Contact::getState,
+                        String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+    }
+
+    // Sort by Zip
+    public List<Contact> sortByZip() {
+
+        return contactList.stream()
+                .sorted(Comparator.comparing(Contact::getZip))
                 .collect(Collectors.toList());
     }
 }

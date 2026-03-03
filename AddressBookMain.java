@@ -12,50 +12,45 @@ public class AddressBookMain {
 
         AddressBook addressBook = new AddressBook("MyAddressBook");
 
-        // Add multiple persons using console
-        System.out.print("How many contacts do you want to add? ");
-        int count = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        // Sample data
+        addressBook.addContact(new Contact("Brahmika", "S",
+                "Street1", "Chennai", "TamilNadu",
+                "600001", "9876543210", "brah@example.com"));
 
-        for (int i = 0; i < count; i++) {
+        addressBook.addContact(new Contact("Rahul", "K",
+                "Street2", "Bangalore", "Karnataka",
+                "560001", "9123456780", "rahul@example.com"));
 
-            System.out.println("\nEnter details for Contact " + (i + 1));
+        addressBook.addContact(new Contact("Anita", "R",
+                "Street3", "Delhi", "Delhi",
+                "110001", "9988776655", "anita@example.com"));
 
-            System.out.print("First Name: ");
-            String firstName = scanner.nextLine();
+        System.out.println("\nSort By:");
+        System.out.println("1. City");
+        System.out.println("2. State");
+        System.out.println("3. Zip");
 
-            System.out.print("Last Name: ");
-            String lastName = scanner.nextLine();
+        int choice = scanner.nextInt();
 
-            System.out.print("Address: ");
-            String address = scanner.nextLine();
+        List<Contact> sortedList = null;
 
-            System.out.print("City: ");
-            String city = scanner.nextLine();
-
-            System.out.print("State: ");
-            String state = scanner.nextLine();
-
-            System.out.print("Zip: ");
-            String zip = scanner.nextLine();
-
-            System.out.print("Phone Number: ");
-            String phone = scanner.nextLine();
-
-            System.out.print("Email: ");
-            String email = scanner.nextLine();
-
-            addressBook.addContact(new Contact(
-                    firstName, lastName, address,
-                    city, state, zip, phone, email));
+        switch (choice) {
+            case 1:
+                sortedList = addressBook.sortByCity();
+                break;
+            case 2:
+                sortedList = addressBook.sortByState();
+                break;
+            case 3:
+                sortedList = addressBook.sortByZip();
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                System.exit(0);
         }
 
-        // Sort and Display
-        System.out.println("\n--- Contacts Sorted Alphabetically ---");
-
-        List<Contact> sortedContacts = addressBook.sortByName();
-
-        sortedContacts.forEach(System.out::println);
+        System.out.println("\n--- Sorted Contacts ---");
+        sortedList.forEach(System.out::println);
 
         scanner.close();
     }
