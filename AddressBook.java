@@ -1,18 +1,35 @@
 //Contains methods to add and display contacts.
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddressBook {
 
-    private Contact contact;   // HAS-A relationship
+    private List<Contact> contactList = new ArrayList<>();
 
     public void addContact(Contact contact) {
-        this.contact = contact;
-        System.out.println("\nContact added successfully!");
+        contactList.add(contact);
+        System.out.println("Contact added successfully!");
     }
 
-    public void displayContact() {
-        if (contact != null) {
+    public void editContact(String firstName) {
+
+        for (Contact contact : contactList) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+
+                contact.setAddress("Updated Address");
+                contact.setCity("Updated City");
+
+                System.out.println("Contact updated successfully!");
+                return;
+            }
+        }
+
+        System.out.println("Contact not found!");
+    }
+
+    public void displayContacts() {
+        for (Contact contact : contactList) {
             System.out.println(contact);
-        } else {
-            System.out.println("No contact available.");
         }
     }
 }
